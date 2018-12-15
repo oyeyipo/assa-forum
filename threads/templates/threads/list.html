@@ -9,10 +9,14 @@
                 Afesiere Secondary School Afesiere Forum
             </small>
             <div>
-                <p><input id="content_title" placeholder="Enter the title..."></p>
-                <p><input id="content_body" placeholder="Start writing the content here..."></p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input id="content_title" name="title_text" placeholder="Enter the title...">
+                    <input id="content_body" name="content_text" placeholder="Start writing the content here...">
+                </form>
+                
                 <table id="id_list_table">
-                    
+                    <tr><td>{{ new_content_title }}</td></tr>
                 </table>
             </div>
         </header>

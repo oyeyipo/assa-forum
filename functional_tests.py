@@ -60,21 +60,30 @@ class NewVisitorTest(unittest.TestCase):
 
         # When he hits enter, the page updates, and now the page lists 
         # "Boys in Afesiere sch" as an article item
-        content_inputbox.send_keys(Keys.ENTER)
+        content_inputbox.submit() #send_keys(Keys.ENTER)
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == 'Boys in Afesiere sch' for row in rows),
-            "New content title did not appear in table"
-        )
+        self.assertIn('Boys in Afesiere sch', [row.text for row in rows])
 
         # There was still a text box inviting him to add another item. he enters 
         # "Girls in Ughelli North" with details "Afesiere boys are best in the 
         # entire Ughelli North among all secondary school boys"
+        title_inputbox = self.browser.find_element_by_id('content_title')
+        title_inputbox.send_keys('Girls in Ughelli North')
+
+        content_inputbox = self.browser.find_element_by_id('content_body')
+        content_inputbox.send_keys('Afesiere boys are best in the entire Ughelli North among all secondary school boys')
+        content_inputbox.submit()
+        time.sleep(1)
 
         # The page updates again, and now shows both items on the news list
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('Boys in Afesiere sch', [row.text for row in rows])
+        self.assertIn('Girls in Ughelli North', [row.text for row in rows])
+       
 
         # HE wonder if he could be able to read the details of each news items.
         # he click on the first title and passed to another page that shows the topic
