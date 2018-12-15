@@ -31,7 +31,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn("ASSA", self.browser.title)
 
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('ASSA', header_text)
+        self.assertIn('ASSA forum', header_text)
 
         # and a small tag describing the full acronym
         logo_description = self.browser.find_element_by_id('logo_description').text
@@ -66,7 +66,8 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
-            any(row.text == 'Boys in Afesiere sch' for row in rows)
+            any(row.text == 'Boys in Afesiere sch' for row in rows),
+            "New content title did not appear in table"
         )
 
         # There was still a text box inviting him to add another item. he enters 
