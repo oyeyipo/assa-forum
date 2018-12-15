@@ -3,5 +3,5 @@ from threads import views
 
 app_name='threads'
 urlpatterns = [
-    path('lists', views.threads_page, name='lists'),
+    path('list', views.threads_page, name='list'),
 ]
