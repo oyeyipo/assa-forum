@@ -22,6 +22,11 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_can_start_a_list_and_retrieve_it_later(self):
         # a student just heard of the sch platform
         # he goes to check out the homepage
@@ -63,9 +68,7 @@ class NewVisitorTest(unittest.TestCase):
         content_inputbox.submit() #send_keys(Keys.ENTER)
         time.sleep(1)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('Boys in Afesiere sch', [row.text for row in rows])
+        self.check_for_row_in_list_table('Boys of Afesiere sch')
 
         # There was still a text box inviting him to add another item. he enters 
         # "Girls in Ughelli North" with details "Afesiere boys are best in the 
@@ -79,10 +82,8 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         # The page updates again, and now shows both items on the news list
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('Boys in Afesiere sch', [row.text for row in rows])
-        self.assertIn('Girls in Ughelli North', [row.text for row in rows])
+        self.check_for_row_in_list_table('Boys of Afesiere sch')
+        self.check_for_row_in_list_table('Girls in Ughelli North')
        
 
         # HE wonder if he could be able to read the details of each news items.
