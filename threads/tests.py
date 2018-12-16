@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from threads.models import Content
 
 class ThreadsPageTest(TestCase):
 
@@ -16,5 +16,23 @@ class ThreadsPageTest(TestCase):
         self.assertTemplateUsed(response, 'threads/list.html')
 
 
+class ItemModelTest(TestCase):
 
+    def test_saving_and_retrieving_content(self):
+        first_content = Content()
+        first_content.title = 'The first (ever) list content'
+        first_content.save()
+
+        second_content = Content()
+        second_content.title = 'Content the second'
+        second_content.save()
+
+        saved_contents = Content.objects.all()
+        self.assertEqual(saved_contents.count(), 2)
+
+        first_saved_content = saved_contents[0]
+        second_saved_content = saved_contents[1]
+
+        self.assertEqual(first_saved_content.title, 'The first (ever) list content')
+        self.assertEqual(second_saved_content.title, 'Content the second')
 
