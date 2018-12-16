@@ -68,7 +68,7 @@ class NewVisitorTest(unittest.TestCase):
         content_inputbox.submit() #send_keys(Keys.ENTER)
         time.sleep(1)
 
-        self.check_for_row_in_list_table('Boys of Afesiere sch')
+        self.check_for_row_in_list_table('Boys in Afesiere sch')
 
         # There was still a text box inviting him to add another item. he enters 
         # "Girls in Ughelli North" with details "Afesiere boys are best in the 
@@ -82,7 +82,7 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         # The page updates again, and now shows both items on the news list
-        self.check_for_row_in_list_table('Boys of Afesiere sch')
+        self.check_for_row_in_list_table('Boys in Afesiere sch')
         self.check_for_row_in_list_table('Girls in Ughelli North')
        
         # HE wonder if he could be able to read the details of each news items.
