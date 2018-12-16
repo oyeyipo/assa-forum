@@ -7,14 +7,15 @@
             - the choice based forum (only one)
 """
 
-from selenium import webdriver
-import unittest
 import time
+
+from django.test import LiveServerTestCase
+
+from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-
-class NewVisitorTest(unittest.TestCase):    
+class NewVisitorTest(LiveServerTestCase):    
 
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -30,7 +31,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # a student just heard of the sch platform
         # he goes to check out the homepage
-        self.browser.get('http://localhost:8000/threads/list')
+        self.browser.get(self.live_server_url + '/threads/list')
 
         # noticing the header saids that "ASSA"
         self.assertIn("ASSA", self.browser.title)
@@ -94,9 +95,6 @@ class NewVisitorTest(unittest.TestCase):
         # Satisfied, he goes to sleep
 
         self.fail('Finish the test')
-
-if __name__ == '__main__':
-    unittest.main()
 
 
 
