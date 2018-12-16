@@ -85,7 +85,6 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table('Boys of Afesiere sch')
         self.check_for_row_in_list_table('Girls in Ughelli North')
        
-
         # HE wonder if he could be able to read the details of each news items.
         # he click on the first title and passed to another page that shows the topic
         # and details of the topic of the forum
