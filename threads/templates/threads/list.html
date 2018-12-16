@@ -16,7 +16,9 @@
                 </form>
                 
                 <table id="id_list_table">
-                    <tr><td>{{ new_content_title }}</td></tr>
+                    {% for content in contents %}
+                        <tr><td>{{ content.title }}</td></tr>
+                    {% endfor %}
                 </table>
             </div>
         </header>
