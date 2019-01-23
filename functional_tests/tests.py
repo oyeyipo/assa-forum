@@ -10,23 +10,37 @@
 import time
 
 from django.test import LiveServerTestCase
-
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
+import os
 
+MAX_WAIT = 10
 
-class NewVisitorTest(LiveServerTestCase):    
+class NewVisitorTest(StaticLiveServerTestCase):    
 
     def setUp(self):
         self.browser = webdriver.Chrome()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
 
     def tearDown(self):
         self.browser.quit()
 
-    def check_for_row_in_list_table(self, row_text):
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn(row_text, [row.text for row in rows])
+    def wait_for_row_in_list_table(self, row_text):
+        start_time = time.time()
+        while True:
+            try:
+                table = self.browser.find_element_by_id('id_list_table')
+                rows = table.find_elements_by_tag_name('tr')
+                self.assertIn(row_text, [row.text for row in rows])
+                return
+            except (AssertionError, WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         # a student just heard of the sch platform
@@ -67,9 +81,9 @@ class NewVisitorTest(LiveServerTestCase):
         # When he hits enter, the page updates, and now the page lists 
         # "Boys in Afesiere sch" as an article item
         content_inputbox.submit() #send_keys(Keys.ENTER)
-        time.sleep(1)
+        
 
-        self.check_for_row_in_list_table('Boys in Afesiere sch')
+        self.wait_for_row_in_list_table('Boys in Afesiere sch')
 
         # There was still a text box inviting him to add another item. he enters 
         # "Girls in Ughelli North" with details "Afesiere boys are best in the 
@@ -80,11 +94,11 @@ class NewVisitorTest(LiveServerTestCase):
         content_inputbox = self.browser.find_element_by_id('content_body')
         content_inputbox.send_keys('Afesiere boys are best in the entire Ughelli North among all secondary school boys')
         content_inputbox.submit()
-        time.sleep(1)
+        
 
         # The page updates again, and now shows both items on the news list
-        self.check_for_row_in_list_table('Boys in Afesiere sch')
-        self.check_for_row_in_list_table('Girls in Ughelli North')
+        self.wait_for_row_in_list_table('Boys in Afesiere sch')
+        self.wait_for_row_in_list_table('Girls in Ughelli North')
        
         # HE wonder if he could be able to read the details of each news items.
         # he click on the first title and passed to another page that shows the topic

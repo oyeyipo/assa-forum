@@ -29,15 +29,18 @@ class ThreadsPageTest(TestCase):
         self.client.get('/threads/list')
         self.assertEqual(Content.objects.count(), 0)
 
+
+class ListViewTest(TestCase):
+    
     def test_displays_all_content_items(self):
         Content.objects.create(title='Contenty 1', body="body of content")
         Content.objects.create(title='Contenty 2', body="body of content")
 
         response = self.client.get('/threads/list')
 
-        self.assertIn('Contenty 1', response.content.decode())
-        self.assertIn('Contenty 2', response.content.decode())
-        
+        self.assertContains(response, 'Contenty 1')
+        self.assertContains(response, 'Contenty 2')
+
 
 class ItemModelTest(TestCase):
 
