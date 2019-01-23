@@ -1,0 +1,15 @@
+.frontpage {
+  &__header {
+    border-bottom: var(--line-1);
+    background-color: #fff;
+    text-align: center;
+  }
+
+  &__title {
+    padding: 1rem;
+  }
+
+  &__news {
+    background-color: var(--color-grey-light-4);
+  }
+}

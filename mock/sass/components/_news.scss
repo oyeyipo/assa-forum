@@ -1,0 +1,14 @@
+.news {
+  &-item {
+    // padding-right: 1rem;
+    // padding-left: 1rem;
+    padding: 1rem;
+    margin-bottom: 2px;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

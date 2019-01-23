@@ -1,0 +1,13 @@
+.card {
+  height: 25rem;
+  width: 20rem;
+  box-shadow: var(--shadow-light);
+  border-radius: 3px;
+  background-color: #fff;
+
+  // margin-top: 1rem;
+  // margin-left: 1rem;
+  margin-right: 2rem;
+
+  flex: 0 0 auto;
+}
