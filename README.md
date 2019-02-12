@@ -1,4 +1,5 @@
 # AFESIERE SECONDARY SCHOOL AFESIERE
+
 A platform for secondary school students in Afesiere Secondary School to express theirselves, share ideas and socialize
 
 ## Features
@@ -64,3 +65,4 @@ A platform for secondary school students in Afesiere Secondary School to express
     **V11**
         - create a to be honest platform (advanced).
 
+source C:/Users/User/.virtualenvs/asssa-sQ16kbAB/Scripts/activate
