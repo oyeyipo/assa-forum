@@ -42,12 +42,12 @@ djangorestframework-simplejwt = "*"
 coreapi = "*"
 djangorestframework = "*"
 django-mptt = "*"
+django-multiselectfield = "*"
 
 
 [dev-packages]
 
 selenium = "*"
-black = "*"
 
 
 [requires]

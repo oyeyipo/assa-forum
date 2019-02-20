@@ -97,7 +97,7 @@ class CorperProfileAdmin(admin.ModelAdmin):
 
 @admin.register(StudentProfile)
 class StudentProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'class_in', 'school']
+    list_display = ['user', 'class_in']
     
 
 admin.site.register(User, UserAdmin)

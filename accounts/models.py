@@ -17,9 +17,9 @@ class User(AbstractUser):
     ROLE_CHOICES = (
         (STUDENT_VAR, "student"),
         (CORPER_VAR, "corper"),
-        (CREATOR_VAR, "creator"),
-        (PREFECT_VAR, "prefect"),
-        (SPECIAL_VAR, "special"),
+        # (CREATOR_VAR, "creator"),
+        # (PREFECT_VAR, "prefect"),
+        # (SPECIAL_VAR, "special"),
     )
 
     roles = models.PositiveIntegerField(choices=ROLE_CHOICES, null=True)
@@ -29,13 +29,13 @@ class User(AbstractUser):
 class StudentProfile(models.Model):
     CLASS_CHOICES = ((4, "SS 1"), (5, "SS 2"), (6, "SS 3"))
 
-    SCHOOL_CHOICES = ((1, "Afiesere Sec. Sch., Afiesere"),)
+    # SCHOOL_CHOICES = ((1, "Afiesere Sec. Sch., Afiesere"),)
 
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name="student_profile"
     )
     class_in = models.PositiveIntegerField(choices=CLASS_CHOICES, null=True)
-    school = models.PositiveIntegerField(choices=SCHOOL_CHOICES, null=True)
+    # school = models.PositiveIntegerField(choices=SCHOOL_CHOICES, null=True)
 
     def __str__(self):
         username = self.user.username

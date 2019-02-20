@@ -1,38 +1,31 @@
-from rest_framework.generics import (
-    CreateAPIView,
-    ListAPIView,
-    ListCreateAPIView,
-    RetrieveAPIView,
-    RetrieveUpdateDestroyAPIView,
-)
-from rest_framework.permissions import (
-    AllowAny,
-    IsAdminUser,
-    IsAuthenticated,
-    IsAuthenticatedOrReadOnly,
-)
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from rest_framework import status
+from rest_framework.generics import (CreateAPIView, ListAPIView,
+                                     ListCreateAPIView, RetrieveAPIView,
+                                     RetrieveUpdateDestroyAPIView)
+from rest_framework.permissions import (AllowAny, IsAdminUser, IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from threads.permissions import IsOwnerOrReadOnly
 
 from .models import User
-from .serializers import (
-    CorperProfileSerializer,
-    StudentProfileSerializer,
-    UserCreateSerializer,
-    UserDetailSerializer,
-    UserListSerializer,
-)
-from rest_framework import status
-from django.http import Http404
+from .serializers import (CorperProfileSerializer, StudentProfileSerializer,
+                          UserCreateSerializer, UserDetailSerializer,
+                          UserListSerializer)
 
 
 class UserListCreate(ListCreateAPIView):
-    queryset = User.objects.all()
+    # queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     lookup_field = "username"
     permission_classes = [AllowAny]
+
+
+    def get_queryset(self):
+        return User.objects.all()
 
 
 class UserDetailCreate(RetrieveAPIView):
@@ -43,8 +36,6 @@ class UserDetailCreate(RetrieveAPIView):
 
 
 class UserProfileDetailAPIView(APIView):
-
-
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
 
     def get_object(self, username):
@@ -68,32 +59,25 @@ class UserProfileDetailAPIView(APIView):
             serializer = StudentProfileSerializer(user)
         return Response(serializer.data)
 
-# class UserProfileDetail(RetrieveAPIView):
-    #     lookup_field = "username"
-#     permission_classes = [IsAuthenticated]
+class UserProfileDetail(RetrieveAPIView):
+    lookup_field = "username"
+    permission_classes = [IsAuthenticated]
 
-#     def get_serializer_class(self):
-#         if self.request.user.roles == User.CORPER_VAR:
-#             return CorperProfileSerializer
-#         elif self.request.user.roles == User.STUDENT_VAR:
-#             return StudentProfileSerializer
+    def get_serializer_class(self):
+        if self.request.user.roles == User.CORPER_VAR:
+            return CorperProfileSerializer
+        elif self.request.user.roles == User.STUDENT_VAR:
+            return StudentProfileSerializer
 
-#     def get_queryset(self, *args, **kwargs):
-#         user_id = self.kwargs.get("username")
+    def get_object(self):
+        queryset = self.get_queryset()
+        user_id = self.kwargs[self.lookup_field]
+        user = get_object_or_404(queryset, username=user_id)
+        if user.roles == User.CORPER_VAR:
+            obj = user.corper_profile
+        if user.roles == User.STUDENT_VAR:
+            obj = user.student_profile
+        return obj
 
-#         user = User.objects.get(username=user_id)
-#         if self.request.user.roles == User.CORPER_VAR:
-#             profile = user.corper_profile
-#         elif self.request.user.roles == User.STUDENT_VAR:
-#             profile = user.student_profile
-#         return profile
-
-#     def get_queryset(self, *args, **kwargs):
-#         user_id = self.kwargs.get("username")
-
-#         user = User.objects.get(username=user_id)
-#         if self.request.user.roles == User.CORPER_VAR:
-#             profile = user.corper_profile
-#         elif self.request.user.roles == User.STUDENT_VAR:
-#             profile = user.student_profile
-#         return profile
+    def get_queryset(self):
+        return User.objects.all()
