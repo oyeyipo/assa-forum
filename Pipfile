@@ -41,6 +41,7 @@ coverage = "*"
 djangorestframework-simplejwt = "*"
 coreapi = "*"
 djangorestframework = "*"
+django-mptt = "*"
 
 
 [dev-packages]

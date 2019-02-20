@@ -1,10 +1,23 @@
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
-from .views import ThreadListAPIView
+from django.urls import include, path
 
-app_name = 'threads'
+from .views import (
+    ThreadListCreateAPIView,
+    ThreadDetailUpdateDeleteAPIView,
+    HelloView,
+    ThreadDetailAPIView,
+)
+
+app_name = "threads"
 urlpatterns = [
-    path("", ThreadListAPIView.as_view(), name='list'),
-]
+    path("", ThreadListCreateAPIView.as_view(), name="list_create"),
+    path(
+        "<slug:uuid>/",
+        ThreadDetailUpdateDeleteAPIView.as_view(),
+        name="detail_delete_update",
+    ),
 
+    # Test URLs
+    path("<slug:uuid>/", ThreadDetailAPIView.as_view(), name="detail"),
+    path("hello", HelloView.as_view(), name="hello"),
+]
