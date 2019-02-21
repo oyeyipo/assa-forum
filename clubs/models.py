@@ -22,15 +22,37 @@ STUDENT_ROLE_CHOICE = ((STUDENT_VAR, 'Ord Student'),
                        (SS3_VAR, 'SS3 Student'),
                        )
 
+GENERAL_CLUB = 1
+OPTIONAL_CLUB = 2
+SPECIAL_CLUB = 3
+
+CLUB_CHOICES = (
+    (GENERAL_CLUB, 'General Club'),
+    (OPTIONAL_CLUB, 'Optional Club'),
+    (SPECIAL_CLUB, 'Special Club'),
+)
 
 
 class Club(TimeStampedModel):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=250, blank=True, null=True)
     rule = models.TextField(blank=True, null=True)
+    club_type = models.PositiveIntegerField(choices=CLUB_CHOICES)
+
+    __original_club_type = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__original_club_type = self.club_type
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.club_type != self.__original_club_type:
+            print(f'there is a diff: orig {self.__original_club_type} != real {self.club_type}')
+        super().save(*args, **kwargs)
+        self.__original_club_type = self.club_type
  
 
 class GeneralClub(TimeStampedModel):
