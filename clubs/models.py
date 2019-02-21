@@ -49,10 +49,20 @@ class Club(TimeStampedModel):
         return self.name
 
     def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        if is_new:
+            print('object just got created')
         if self.club_type != self.__original_club_type:
             print(f'there is a diff: orig {self.__original_club_type} != real {self.club_type}')
         super().save(*args, **kwargs)
         self.__original_club_type = self.club_type
+
+        if self.club_type == GENERAL_CLUB:
+            GeneralClub.objects.get_or_create(club=self)
+        if self.club_type == SPECIAL_CLUB:
+            SpecialCLub.objects.get_or_create(club=self)
+        if self.club_type == OPTIONAL_CLUB:
+            OptionalClub.objects.get_or_create(club=self)
  
 
 class GeneralClub(TimeStampedModel):
