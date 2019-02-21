@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     
     # Third party lib
     "rest_framework",
+    "multiselectfield",
 ]
 
 # My Customer User API
