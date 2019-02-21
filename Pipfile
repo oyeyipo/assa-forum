@@ -43,11 +43,13 @@ coreapi = "*"
 djangorestframework = "*"
 django-mptt = "*"
 django-multiselectfield = "*"
+django-guardian = "*"
 
 
 [dev-packages]
 
 selenium = "*"
+black = "==18.9b0"
 
 
 [requires]
