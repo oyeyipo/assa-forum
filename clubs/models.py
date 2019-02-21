@@ -20,6 +20,9 @@ STUDENT_ROLE_CHOICE = ((STUDENT_VAR, 'Ord Student'),
                        (SS2_VAR, 'SS2 Student'),
                        (SS3_VAR, 'SS3 Student'),
                        )
+
+
+
 class Club(TimeStampedModel):
     name = models.CharField(max_length=20)
     description = models.CharField(max_lenght=250, blank=True, null=True)
@@ -28,7 +31,6 @@ class Club(TimeStampedModel):
     def __str__(self):
         return self.name
  
-
 
 class GeneralClub(TimeStampedModel):
     club = models.OneToOneField(
