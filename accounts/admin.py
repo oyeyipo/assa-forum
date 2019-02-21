@@ -106,6 +106,16 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ('groups', 'user_permissions')
     inlines = [CorperProfileInline, StudentProfileInline,]
 
+    def get_inline_instances(self, request, obj=None):
+        if not obj:
+            return []
+
+        unfiltered = super().get_inline_instances(request, obj)
+
+        if obj.roles == User.CORPER_VAR:
+            return [x for x in unfiltered if isinstance(x, CorperProfileInline)]
+        else:
+            return [x for x in unfiltered if isinstance(x, StudentProfileInline)]
 
 
 @admin.register(CorperProfile)
