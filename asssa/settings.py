@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # My Apps
+    "clubs.apps.ClubsConfig",
     "accounts.apps.AccountsConfig",
     "threads.apps.ThreadsConfig",
    

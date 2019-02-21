@@ -1,6 +1,7 @@
 from django.db import models
 from multiselectfield import MultiSelectField
 from asssa.models import TimeStampedModel
+from django.conf import settings
 
 
 STUDENT_VAR = 1
@@ -25,7 +26,7 @@ STUDENT_ROLE_CHOICE = ((STUDENT_VAR, 'Ord Student'),
 
 class Club(TimeStampedModel):
     name = models.CharField(max_length=20)
-    description = models.CharField(max_lenght=250, blank=True, null=True)
+    description = models.CharField(max_length=250, blank=True, null=True)
     rule = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -46,6 +47,7 @@ class OptionalClub(TimeStampedModel):
     club = models.OneToOneField(
         Club, on_delete=models.CASCADE, primary_key=True, related_name="optional_club"
     )
+    users_joined = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='opt_users',blank=True)
 
     def __str__(self):
         name = self.club.name
@@ -57,7 +59,7 @@ class SpecialCLub(TimeStampedModel):
     club = models.OneToOneField(
             Club, on_delete=models.CASCADE, primary_key=True, related_name="special_club"
         )
-    special_for = MultiSelectField(choices=STUDENT_ROLE_CHOICE, default=1)
+    special_for = MultiSelectField(choices=STUDENT_ROLE_CHOICE)
 
     def __str__(self):
         name = self.club.name
