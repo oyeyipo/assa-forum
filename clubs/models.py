@@ -50,10 +50,13 @@ class Club(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None
-        if is_new:
-            print('object just got created')
-        if self.club_type != self.__original_club_type:
-            print(f'there is a diff: orig {self.__original_club_type} != real {self.club_type}')
+        
+        ## THis block of code is useless for now
+        if not is_new:
+            if self.club_type != self.__original_club_type:
+                print(f'there is a diff: orig {self.__original_club_type} != real {self.club_type}')
+        ####
+
         super().save(*args, **kwargs)
         self.__original_club_type = self.club_type
 
