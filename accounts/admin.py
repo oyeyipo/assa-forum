@@ -8,6 +8,20 @@ from .models import CorperProfile, StudentProfile, User
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
+
+
+class CorperProfileInline(admin.StackedInline):
+    model = CorperProfile
+    can_delete = False
+    verbose_name = 'corper profile'
+
+
+class StudentProfileInline(admin.StackedInline):
+    model = StudentProfile
+    can_delete = False
+    verbose_name = 'student profile'
+
+
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput)
@@ -42,6 +56,7 @@ class UserChangeForm(forms.ModelForm):
     def clean_password(self):
         return self.initial['password']
 
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
@@ -89,6 +104,8 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions')
+    inlines = [CorperProfileInline, StudentProfileInline,]
+
 
 
 @admin.register(CorperProfile)
@@ -100,5 +117,6 @@ class StudentProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'class_in']
     
 
-admin.site.register(User, UserAdmin)
+
+
 

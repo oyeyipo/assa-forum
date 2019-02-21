@@ -1,5 +1,6 @@
 from django.db import models
 from multiselectfield import MultiSelectField
+from asssa.models import TimeStampedModel
 
 
 STUDENT_VAR = 1
@@ -19,26 +20,44 @@ STUDENT_ROLE_CHOICE = ((STUDENT_VAR, 'Ord Student'),
                        (SS2_VAR, 'SS2 Student'),
                        (SS3_VAR, 'SS3 Student'),
                        )
-class Club(models.Model):
+class Club(TimeStampedModel):
     name = models.CharField(max_length=20)
     description = models.CharField(max_lenght=250, blank=True, null=True)
     rule = models.TextField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+ 
 
 
-class GeneralClub(models.Model):
+class GeneralClub(TimeStampedModel):
     club = models.OneToOneField(
         Club, on_delete=models.CASCADE, primary_key=True, related_name="general_club"
     )
 
-class OptionalClub(models.Model):
+    def __str__(self):
+        name = self.club.name
+        title = 'General Group for ' + name
+        return title
+
+class OptionalClub(TimeStampedModel):
     club = models.OneToOneField(
         Club, on_delete=models.CASCADE, primary_key=True, related_name="optional_club"
     )
 
-class SpecialCLub(models.Model):
+    def __str__(self):
+        name = self.club.name
+        title = 'Optional Group for ' + name
+        return title
+
+
+class SpecialCLub(TimeStampedModel):
     club = models.OneToOneField(
             Club, on_delete=models.CASCADE, primary_key=True, related_name="special_club"
         )
     special_for = MultiSelectField(choices=STUDENT_ROLE_CHOICE, default=1)
+
+    def __str__(self):
+        name = self.club.name
+        title = 'Special Group for ' + name
+        return title

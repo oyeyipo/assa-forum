@@ -25,6 +25,9 @@ class User(AbstractUser):
     roles = models.PositiveIntegerField(choices=ROLE_CHOICES, null=True)
     bios = models.CharField(max_length=200, blank=True, null=True)
 
+    def __str__(self):
+        return self.username
+
 
 class StudentProfile(models.Model):
     CLASS_CHOICES = ((4, "SS 1"), (5, "SS 2"), (6, "SS 3"))
