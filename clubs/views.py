@@ -43,3 +43,9 @@ class ThreadDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 """
 
+"""
+def get_permissions(self):
+    if self.request.method == 'GET' or self.request.method == 'PUT':
+        return [DRYPermissions(),]
+    return []
+"""

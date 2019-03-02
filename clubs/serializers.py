@@ -12,11 +12,6 @@ class ClubListSerializer(ModelSerializer):
         fields = '__all__'
 
 
-
-
-
-
-
 """
 
 class ThreadListSerializer(ModelSerializer):
