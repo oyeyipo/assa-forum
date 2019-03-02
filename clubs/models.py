@@ -4,6 +4,8 @@ from asssa.models import TimeStampedModel
 from django.conf import settings
 
 
+User = settings.AUTH_USER_MODEL
+
 STUDENT_VAR = 1
 MODERATOR_VAR = 2
 PREFECT_VAR = 3
@@ -82,7 +84,7 @@ class OptionalClub(TimeStampedModel):
     club = models.OneToOneField(
         Club, on_delete=models.CASCADE, primary_key=True, related_name="optional_club"
     )
-    users_joined = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='opt_users',blank=True)
+    users_joined = models.ManyToManyField(User, related_name='opt_users',blank=True)
 
     def __str__(self):
         name = self.club.name
@@ -100,3 +102,5 @@ class SpecialCLub(TimeStampedModel):
         name = self.club.name
         title = 'Special Group for ' + name
         return title
+
+        
