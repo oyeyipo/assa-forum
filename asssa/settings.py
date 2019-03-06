@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "clubs.apps.ClubsConfig",
     "accounts.apps.AccountsConfig",
     "threads.apps.ThreadsConfig",
+    "comment.apps.CommentConfig",
    
     "django.contrib.admin",
     "django.contrib.auth",
