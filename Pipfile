@@ -44,6 +44,8 @@ djangorestframework = "*"
 django-mptt = "*"
 django-multiselectfield = "*"
 django-guardian = "*"
+django-shortuuidfield = "*"
+shortuuid = "*"
 
 
 [dev-packages]

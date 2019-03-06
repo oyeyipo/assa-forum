@@ -30,17 +30,20 @@ class ClubListSerializer(ModelSerializer):
             try:
                 return GeneralClubDetailSerializer(obj.general_club).data
             except ObjectDoesNotExist:
-                return "No Objects here"
+                GeneralClub.objects.get_or_create(club=obj)
+                return GeneralClubDetailSerializer(obj.optional_club).data
         elif obj.club_type == 2:
             try:
                 return OptionalClubDetailSerializer(obj.optional_club).data
             except ObjectDoesNotExist:
-                return "No Objects here"
+                OptionalClub.objects.get_or_create(club=obj)
+                return OptionalClubDetailSerializer(obj.optional_club).data
         elif obj.club_type == 3:
             try:
                 return SpecialClubDetailSerializer(obj.special_club).data
             except ObjectDoesNotExist:
-                return "No Objects here"
+                SpecialCLub.objects.get_or_create(club=obj)
+                return SpecialCLubDetailSerializer(obj.optional_club).data
         return None
             
 
@@ -92,4 +95,13 @@ class ThreadDetailSerializer(ModelSerializer):
     def get_owner(self, obj):
         return str(obj.owner.username)
 
+
+from django.core.exceptions import ObjectDoesNotExist
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    try:
+        instance.profile.save()
+    except ObjectDoesNotExist:
+        Profile.objects.create(user=instance)
 """

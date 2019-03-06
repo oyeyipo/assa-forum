@@ -48,3 +48,6 @@ class Thread(models.Model):
     def get_absolute_url(self):
         return reverse("api:threads:detail_delete_update", kwargs={"uuid": self.uuid})
 
+    # def comments(self):
+    #     return Thread.comments.all()
+

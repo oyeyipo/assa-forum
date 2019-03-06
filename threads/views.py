@@ -49,6 +49,9 @@ class ThreadDetailAPIView(RetrieveAPIView):
 
 
 class HelloView(APIView):
+    '''
+    This view is basically useless for now
+    '''
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):

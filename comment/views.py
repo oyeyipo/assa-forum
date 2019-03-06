@@ -12,11 +12,19 @@ from rest_framework.views import APIView
 from threads.permissions import IsOwnerOrReadOnly
 
 from .models import Comment
-from .serializers import CommentListSerializer
+from .serializers import CommentListSerializer, CommentDetailSerializer
 
 class CommentListAPIView(ListCreateAPIView):
 	serializer_class = CommentListSerializer
+	lookup_field = "uuid"
 
 	def get_queryset(self):
 		return Comment.objects.all()
 
+
+class CommentDetailAPIView(RetrieveAPIView):
+	serializer_class = CommentDetailSerializer
+	lookup_field = "uuid"
+
+	def get_queryset(self):
+		return Comment.objects.all()
