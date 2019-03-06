@@ -7,6 +7,7 @@ urlpatterns = [
     path("users/", include("accounts.urls", namespace="users")),
     path("threads/", include("threads.urls", namespace="threads")),
     path("clubs/", include("clubs.urls", namespace="clubs")),
+    path("comments/", include("comment.urls", namespace="comments")),
 
     # Auth token urls
     path("token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
