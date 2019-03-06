@@ -10,7 +10,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 
-
 class ClubListSerializer(ModelSerializer):
     detail = SerializerMethodField()
     class Meta:
@@ -28,14 +27,20 @@ class ClubListSerializer(ModelSerializer):
 
     def get_detail(self, obj):
         if obj.club_type == 1:
-            return GeneralClubDetailSerializer(obj.general_club).data
+            try:
+                return GeneralClubDetailSerializer(obj.general_club).data
+            except ObjectDoesNotExist:
+                return "No Objects here"
         elif obj.club_type == 2:
             try:
                 return OptionalClubDetailSerializer(obj.optional_club).data
             except ObjectDoesNotExist:
                 return "No Objects here"
         elif obj.club_type == 3:
-            return SpecialClubDetailSerializer(obj.special_club).data
+            try:
+                return SpecialClubDetailSerializer(obj.special_club).data
+            except ObjectDoesNotExist:
+                return "No Objects here"
         return None
             
 

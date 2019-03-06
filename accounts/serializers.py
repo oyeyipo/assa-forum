@@ -23,6 +23,7 @@ class UserListSerializer(ModelSerializer):
         )
 
 
+
 class UserDetailSerializer(ModelSerializer):
     url = HyperlinkedIdentityField(
         view_name="api:users:profile",
