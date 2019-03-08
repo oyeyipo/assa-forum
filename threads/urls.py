@@ -16,6 +16,11 @@ urlpatterns = [
         ThreadDetailUpdateDeleteAPIView.as_view(),
         name="detail_delete_update",
     ),
+    path(
+        "<slug:uuid>/comments/",
+        ThreadDetailUpdateDeleteAPIView.as_view(),
+        name="thread_comments",
+    ),
 
     # Test URLs
     path("<slug:uuid>/", ThreadDetailAPIView.as_view(), name="detail"),

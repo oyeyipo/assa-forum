@@ -31,7 +31,7 @@ class Comment(MPTTModel):
     objects = CommentManager()
 
     class MPTTMeta:
-        order_insertion_by = ['name']
+        order_insertion_by = ['created_on']
 
     def __str__(self):
         return str(f'{self.user}: {self.body[:50]}...')

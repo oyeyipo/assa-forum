@@ -5,7 +5,7 @@ from rest_framework.serializers import (
     SerializerMethodField
 )
 
-from comment.serializers import CommentListSerializer, CommentDetailSerializer
+from comment.serializers import CommentDetailSerializer
 from comment.models import Comment
 from .models import Thread
 
@@ -48,5 +48,4 @@ class ThreadDetailSerializer(ModelSerializer):
         if obj.comments.count() > 0:
             return CommentDetailSerializer(obj.comments.all(), many=True).data
         return None
-
 

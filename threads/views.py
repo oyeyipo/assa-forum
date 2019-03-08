@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from rest_framework.generics import (
     ListCreateAPIView,
-    UpdateAPIView,
     RetrieveAPIView,
     RetrieveUpdateDestroyAPIView,
+    UpdateAPIView,
 )
 from rest_framework.permissions import (
     AllowAny,
@@ -14,9 +15,10 @@ from rest_framework.permissions import (
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+
 from .models import Thread
-from .serializers import ThreadDetailSerializer, ThreadListSerializer
 from .permissions import IsOwnerOrReadOnly
+from .serializers import ThreadDetailSerializer, ThreadListSerializer
 
 
 class ThreadListCreateAPIView(ListCreateAPIView):
@@ -36,12 +38,31 @@ class ThreadDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 
 
+# class ThreadCommentsAPIView(RetrieveAPIView):
+#     lookup_field = "uuid"
+#     permission_classes = []
+
+#     def get_serializer_class(self):
+#         return ThreadDetailSerializer
+
+#     def get_object(self):
+#         qs = self.get_queryset()
+#         thread_id = self.kwargs[self.lookup_field]
+#         thread = get_object_or_404(qs, uuid=thread_id)
+#         obj = thread.comments.all()
+#         return obj
+
+#     def get_queryset(self):
+#         return Thread.objects.all()
 
 
+####################################################
+###################################################
 class ThreadDetailAPIView(RetrieveAPIView):
-    '''
+    """
     This view is basically useless for now
-    '''
+    """
+
     queryset = Thread.objects.all()
     serializer_class = ThreadDetailSerializer
     lookup_field = "uuid"
@@ -49,9 +70,10 @@ class ThreadDetailAPIView(RetrieveAPIView):
 
 
 class HelloView(APIView):
-    '''
+    """
     This view is basically useless for now
-    '''
+    """
+
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):

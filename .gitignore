@@ -37,6 +37,6 @@ yarn-error.log*
 
 .vscode
 
-
-# Remove later
+#client stuff
+client/node_modules
 client/
