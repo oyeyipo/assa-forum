@@ -16,7 +16,7 @@ SECRET_KEY = "1y83+ttz^4y$2b=*v+m)na)@a28l65dx-h*#eki-^d=t7c)e-v"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['assaforum.herokuapp.com', 'localhost:8000']
 
 
 # Application definition
