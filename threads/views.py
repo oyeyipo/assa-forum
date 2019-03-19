@@ -74,8 +74,8 @@ class HelloView(APIView):
     This view is basically useless for now
     """
 
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,) #IsAuthenticated
 
     def get(self, request):
-        content = {"message": "Hello, World!"}
+        content = {"message": "Hello Guest! Welcome to ASSA Forum"}
         return Response(content)

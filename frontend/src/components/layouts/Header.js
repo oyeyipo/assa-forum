@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import {
-  withStyles,
   AppBar,
   Toolbar,
   Typography,
@@ -9,6 +9,7 @@ import {
   IconButton
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import SideMenuDrawer from "./Drawer";
 
 const styles = {
   root: {
@@ -24,25 +25,41 @@ const styles = {
 };
 
 class Header extends Component {
+  state = {
+    isOpen: false
+  };
+
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  toggleDrawer = (isOpen) => () => {
+    this.setState({
+      isOpen
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="#223">
+        <AppBar position="sticky">
           <Toolbar>
             <IconButton
               className={classes.menuButton}
-              color="#777"
+              color="inherit"
               aria-label="Menu"
+              onClick={this.toggleDrawer(true)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.grow}>
-              ASSA
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              ASSA <small>Forum</small>
             </Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
+        <SideMenuDrawer open={this.state} toggle={this.toggleDrawer} />
       </div>
     );
   }
@@ -53,4 +70,3 @@ Header.propTypes = {
 };
 
 export default withStyles(styles)(Header);
-
