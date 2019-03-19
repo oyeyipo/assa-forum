@@ -46,6 +46,8 @@ django-multiselectfield = "*"
 django-guardian = "*"
 django-shortuuidfield = "*"
 shortuuid = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 
 [dev-packages]
