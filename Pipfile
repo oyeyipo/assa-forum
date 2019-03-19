@@ -33,7 +33,6 @@ service-identity = "==17.0.0"
 twisted = "==18.4.0"
 "w3lib" = "==1.19.0"
 "zope.interface" = "==4.5.0"
-"4f1b8f1" = {path = ".\\Twisted-18.4.0-cp36-cp36m-win32.whl"}
 django-cors-headers = "*"
 django-filters = "*"
 markdown = "*"

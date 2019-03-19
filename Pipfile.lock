@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a028b0c7f6a5b87124de273673a0e8dec4c03987fdf252340b6e92e0af9d7eea"
+            "sha256": "8ed43af5074a2a72c2c44fd6a89c789aace2bf4464584a2f7e4d5ba27cc8b681"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,9 +16,6 @@
         ]
     },
     "default": {
-        "4f1b8f1": {
-            "path": ".\\Twisted-18.4.0-cp36-cp36m-win32.whl"
-        },
         "asn1crypto": {
             "hashes": [
                 "sha256:2f1adbb7546ed199e3c90ef23ec95c5cf3585bac7d11fb7eb562a3fe89c64e87",
