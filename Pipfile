@@ -47,6 +47,8 @@ django-shortuuidfield = "*"
 shortuuid = "*"
 gunicorn = "*"
 django-heroku = "*"
+dj-database-url = "*"
+python-decouple = "*"
 
 
 [dev-packages]
