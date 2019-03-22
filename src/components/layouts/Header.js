@@ -16,11 +16,15 @@ const styles = {
     flexGrow: 1
   },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontSize: 20
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  loginButton: {
+    fontSize: 20
   }
 };
 
@@ -56,7 +60,9 @@ class Header extends Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               ASSA <small>Forum</small>
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" className={classes.loginButton}>
+              Login
+            </Button>
           </Toolbar>
         </AppBar>
         <SideMenuDrawer open={this.state} toggle={this.toggleDrawer} />

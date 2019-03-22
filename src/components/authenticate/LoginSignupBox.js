@@ -13,6 +13,14 @@ const styles = (theme) => ({
   },
   heading: {
     marginBottom: "10px"
+  },
+  signup: {
+    backgroundColor: theme.palette.secondary.light,
+    color: `#fff`
+  },
+  login: {
+    backgroundColor: theme.palette.primary.light,
+    color: `#fff`
   }
 });
 
@@ -59,7 +67,7 @@ class LoginSignupBox extends Component {
                 spacing={16}
               >
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" className={classes.login}>
                     Log IN
                   </Button>
                 </Grid>
@@ -67,7 +75,7 @@ class LoginSignupBox extends Component {
                   <Typography component="p">OR</Typography>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="secondary">
+                  <Button variant="contained" className={classes.signup}>
                     Sign Up
                   </Button>
                 </Grid>
