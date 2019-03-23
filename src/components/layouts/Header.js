@@ -6,10 +6,12 @@ import {
   Toolbar,
   Typography,
   Button,
-  IconButton
+  IconButton,
+  Link
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideMenuDrawer from "./Drawer";
+import { Link as RouterLink } from "react-router-dom";
 
 const styles = {
   root: {
@@ -45,6 +47,8 @@ class Header extends Component {
 
   render() {
     const { classes } = this.props;
+    const HomeLink = (props) => <RouterLink to="/" {...props} />;
+
     return (
       <div className={classes.root}>
         <AppBar position="sticky">
@@ -58,7 +62,9 @@ class Header extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              ASSA <small>Forum</small>
+              <Link component={HomeLink} color="inherit" underline="none">
+                ASSA <small>Forum</small>
+              </Link>
             </Typography>
             <Button color="inherit" className={classes.loginButton}>
               Login
