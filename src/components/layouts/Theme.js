@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { deepOrange, teal, lime, amber } from "@material-ui/core/colors";
+import { deepOrange, teal, amber } from "@material-ui/core/colors";
 
 const Theme = createMuiTheme({
   palette: {

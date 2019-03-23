@@ -4,11 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import {
   Button,
   Divider,
-  Chip,
   Typography,
-  ListItem,
-  ListItemText,
-  List
+  Card,
+  CardActions,
+  CardContent
 } from "@material-ui/core";
 
 const styles = (theme) => ({
@@ -18,20 +17,22 @@ const styles = (theme) => ({
     marginTop: 10
   },
   heading: {
-    padding: "6px"
+    padding: 0.6,
+    fontSize: 25
   },
-  chip: {
-    marginRight: theme.spacing.unit
+  news: {
+    width: "100%"
   },
-  section1: {
-    margin: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`
+  news__content: {
+    width: "100%",
+    backgroundColor: theme.palette.background.paper
   },
-  section2: {
-    margin: theme.spacing.unit * 2
+  title: {
+    fontSize: 20,
+    textAlign: "center"
   },
-  section3: {
-    margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 2}px ${theme
-      .spacing.unit * 2}px`
+  container: {
+    marginTop: 8
   }
 });
 
@@ -46,29 +47,46 @@ class Frontpage extends Component {
             ASBN Frontpage News
           </Typography>
           <Divider component="li" />
-          <div>
-            <List component="li">
-              <ListItem button>
-                <ListItemText primary="Inbox" />
-              </ListItem>
-              <Divider />
-              <ListItem button divider>
-                <ListItemText primary="Drafts" />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Trash" />
-              </ListItem>
-              <Divider light />
-              <ListItem button>
-                <ListItemText primary="Spam" />
-              </ListItem>
-            </List>
+          <div className={classes.container}>
+            <Card className={classes.news}>
+              <CardContent>
+                <Typography className={classes.title}>
+                  Word of the DayWord of the DayWord of the DayWord of the
+                  DayWord of the Day
+                </Typography>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-        <div>
-          <Button variant="contained" color="primary" fullWidth>
-            Load More >>>
-          </Button>
+          <div className={classes.container}>
+            <Card className={classes.news}>
+              <CardContent>
+                <Typography className={classes.title}>
+                  Word of the DayWord of the DayWord of the DayWord of the
+                  DayWord of the Day
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
+          <div className={classes.container}>
+            <Card className={classes.news}>
+              <CardContent>
+                <Typography className={classes.title}>
+                  Word of the DayWord of the DayWord of the DayWord of the
+                  DayWord of the Day
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
+          <div className={classes.container}>
+            <Card className={classes.news}>
+              <CardContent>
+                <Typography className={classes.title}>
+                  Word of the DayWord of the DayWord of the DayWord of the
+                  DayWord of the Day
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </Fragment>
     );

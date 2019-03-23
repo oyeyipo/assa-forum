@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Button, Grid } from "@material-ui/core";
+import { Paper, Typography, Button, Grid, Link } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -40,6 +41,8 @@ class LoginSignupBox extends Component {
   render() {
     const { classes } = this.props;
     const { hello } = this.state;
+    const LoginLink = (props) => <RouterLink to="/login" {...props} />;
+    const SignupLink = (props) => <RouterLink to="/signup" {...props} />;
 
     return (
       <div>
@@ -68,7 +71,13 @@ class LoginSignupBox extends Component {
               >
                 <Grid item>
                   <Button variant="contained" className={classes.login}>
-                    Log IN
+                    <Link
+                      component={LoginLink}
+                      color="inherit"
+                      underline="none"
+                    >
+                      Log IN
+                    </Link>
                   </Button>
                 </Grid>
                 <Grid item>
@@ -76,7 +85,13 @@ class LoginSignupBox extends Component {
                 </Grid>
                 <Grid item>
                   <Button variant="contained" className={classes.signup}>
-                    Sign Up
+                    <Link
+                      component={SignupLink}
+                      color="inherit"
+                      underline="none"
+                    >
+                      Sign UP
+                    </Link>
                   </Button>
                 </Grid>
               </Grid>
