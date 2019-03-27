@@ -7,7 +7,8 @@ import {
   Typography,
   Button,
   IconButton,
-  Link
+  Link,
+  Grid
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideMenuDrawer from "./Drawer";
@@ -19,14 +20,14 @@ const styles = {
   },
   grow: {
     flexGrow: 1,
-    fontSize: 20
+    fontSize: "1.2rem"
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20
   },
   loginButton: {
-    fontSize: 20
+    fontSize: "1.2rem"
   }
 };
 
@@ -34,11 +35,6 @@ class Header extends Component {
   state = {
     isOpen: false
   };
-
-  // constructor(props) {
-  //   super(props);
-  // }
-
   toggleDrawer = (isOpen) => () => {
     this.setState({
       isOpen
@@ -53,22 +49,34 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="sticky">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-              onClick={this.toggleDrawer(true)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link component={HomeLink} color="inherit" underline="none">
-                ASSA <small>Forum</small>
-              </Link>
-            </Typography>
-            <Button color="inherit" className={classes.loginButton}>
-              Login
-            </Button>
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
+                <IconButton
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Menu"
+                  onClick={this.toggleDrawer(true)}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  className={classes.grow}
+                >
+                  <Link component={HomeLink} color="inherit" underline="none">
+                    ASSA <small>Forum</small>
+                  </Link>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button color="inherit" className={classes.loginButton}>
+                  Search Icon
+                </Button>
+              </Grid>
+            </Grid>
           </Toolbar>
         </AppBar>
         <SideMenuDrawer open={this.state} toggle={this.toggleDrawer} />

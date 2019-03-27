@@ -6,19 +6,22 @@ const Theme = createMuiTheme({
     primary: teal,
     secondary: amber,
     error: deepOrange,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2
-    // type: "dark"
   },
   typography: {
-    // Tell Material-UI what the font-size on the html element is.
     htmlFontSize: 10,
     useNextVariants: true
+  },
+  grey: {
+    light_1: "#faf9f9",
+    light_2: "#f4f2f2",
+    light_3: "#f0eeee",
+    light_4: "#ccc",
+
+    dark_1: "#333",
+    dark_2: "#777",
+    dark_3: "#999"
   }
 });
 export default Theme;
