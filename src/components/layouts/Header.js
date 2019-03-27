@@ -23,11 +23,11 @@ const styles = {
     fontSize: "1.2rem"
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+    marginLeft: -12
   },
   loginButton: {
-    fontSize: "1.2rem"
+    fontSize: "1.2rem",
+    marginRight: -12
   }
 };
 
@@ -73,7 +73,7 @@ class Header extends Component {
               </Grid>
               <Grid item>
                 <Button color="inherit" className={classes.loginButton}>
-                  Search Icon
+                  S
                 </Button>
               </Grid>
             </Grid>

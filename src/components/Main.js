@@ -2,36 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-// import {
-//   Card,
-//   CardActions,
-//   CardContent,
-//   Button,
-//   Typography
-// } from "@material-ui/core";
-
 import Frontpage from "./frontpage/Frontpage";
 import { LoginSignupBox } from "./authenticate";
 
 const styles = {
-  card: {
-    minWidth: 275
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  }
+  root: {},
+  frontpage: {}
 };
 
 class Main extends Component {
-  
   state = {
     hello: []
   };
@@ -46,12 +25,13 @@ class Main extends Component {
   }
 
   render() {
-    //const { classes } = this.props;
-    // const bull = <span className={classes.bullet}>•</span>;
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <LoginSignupBox />
-        <Frontpage />
+        <main className={classes.frontpage}>
+          <Frontpage />
+        </main>
       </div>
     );
   }
