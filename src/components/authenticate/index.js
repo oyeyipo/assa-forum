@@ -1,5 +1,5 @@
-import LoginSignupBox from "./LoginSignupBox";
+import AuthContainer from "./AuthContainer";
 import Login from "./Login";
 import Signup from "./Signup";
 
-export { LoginSignupBox, Login, Signup };
+export { AuthContainer, Login, Signup };

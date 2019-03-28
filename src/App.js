@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 import { CustomLayout } from "./containers";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { Theme } from "./components/layouts";
+// import "./App.css";
 
 class App extends Component {
   render() {

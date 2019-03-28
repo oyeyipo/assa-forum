@@ -11,6 +11,7 @@ import {
   Grid
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
 import SideMenuDrawer from "./Drawer";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -25,7 +26,7 @@ const styles = {
   menuButton: {
     marginLeft: -12
   },
-  loginButton: {
+  searchBtn: {
     fontSize: "1.2rem",
     marginRight: -12
   }
@@ -72,9 +73,13 @@ class Header extends Component {
                 </Typography>
               </Grid>
               <Grid item>
-                <Button color="inherit" className={classes.loginButton}>
-                  S
-                </Button>
+                <IconButton
+                  className={classes.searchBtn}
+                  color="inherit"
+                  aria-label="Search"
+                >
+                  <SearchIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Toolbar>

@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Frontpage from "./frontpage/Frontpage";
-import { LoginSignupBox } from "./authenticate";
+import { AuthContainer } from "./authenticate";
 
 const styles = {
   root: {},
@@ -28,7 +28,7 @@ class Main extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <LoginSignupBox />
+        <AuthContainer />
         <main className={classes.frontpage}>
           <Frontpage />
         </main>

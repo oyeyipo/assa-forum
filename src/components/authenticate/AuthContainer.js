@@ -12,20 +12,32 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing.unit * 2,
     margin: "6px"
   },
-  heading: {
-    marginBottom: "10px"
+  welcome: {
+    marginBottom: "1rem",
+    fontSize: "1.5rem",
+    textAlign: "center"
   },
   signup: {
-    backgroundColor: theme.palette.secondary.light,
-    color: `#fff`
+    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+    borderRadius: 3,
+    border: 0,
+    color: "white",
+    height: 48,
+    padding: "0 1rem",
+    boxShadow: "0 .2rem .3rem .1rem rgba(255, 105, 135, .3)"
   },
   login: {
     backgroundColor: theme.palette.primary.light,
-    color: `#fff`
+    borderRadius: 3,
+    border: 0,
+    color: "white",
+    height: 48,
+    padding: "0 1rem",
+    boxShadow: "0 .2rem .3rem .1rem rgba(0,0,0,.3)"
   }
 });
 
-class LoginSignupBox extends Component {
+class AuthContainer extends Component {
   state = {
     hello: []
   };
@@ -57,7 +69,8 @@ class LoginSignupBox extends Component {
               <Typography
                 variant="h5"
                 component="h3"
-                className={classes.heading}
+                color="textSecondary"
+                className={classes.welcome}
               >
                 {hello.message}
               </Typography>
@@ -81,7 +94,7 @@ class LoginSignupBox extends Component {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Typography component="p">OR</Typography>
+                  <Typography color="textSecondary" component="p">OR</Typography>
                 </Grid>
                 <Grid item>
                   <Button variant="contained" className={classes.signup}>
@@ -103,8 +116,8 @@ class LoginSignupBox extends Component {
   }
 }
 
-LoginSignupBox.propTypes = {
+AuthContainer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LoginSignupBox);
+export default withStyles(styles)(AuthContainer);
