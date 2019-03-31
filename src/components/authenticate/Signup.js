@@ -1,51 +1,31 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import { MenuItem, TextField } from "@material-ui/core";
+import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
 const styles = (theme) => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    margin: "1rem auto"
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+  title: {
+    textAlign: "center"
   },
-  dense: {
-    marginTop: 16
+  form: {
+    margin: "0 1rem"
   },
-  menu: {
-    width: 200
+  button: {
+    margin: "1rem auto"
   }
 });
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$"
-  },
-  {
-    value: "EUR",
-    label: "€"
-  },
-  {
-    value: "BTC",
-    label: "฿"
-  },
-  {
-    value: "JPY",
-    label: "¥"
-  }
-];
-
 class Signup extends Component {
   state = {
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+    role: "1",
+    errors: {}
   };
 
   handleChange = (name) => (event) => {
@@ -57,28 +37,25 @@ class Signup extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <h1>Register</h1>
-        <p>Create your account with the form below</p>
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="first-name-input"
-            label="First Name"
-            className={classes.textField}
-            type="text"
-            name="text"
-            margin="normal"
-            variant="outlined"
-            fullWidth
-          />
+      <Paper className={classes.container} elevation={0}>
+        <div className={classes.title}>
+          <Typography variant="h6" component="h2">
+            Register
+          </Typography>
 
+          <Typography variant="subtitle1" component="h3">
+            Create your account with the form below
+          </Typography>
+        </div>
+        <form className={classes.form} noValidate autoComplete="off">
           <TextField
-            id="first-name-input"
-            label="First Name"
+            required
+            id="username-input"
+            label="Enter Username"
             className={classes.textField}
             type="text"
             name="text"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             fullWidth
           />
@@ -91,7 +68,7 @@ class Signup extends Component {
             type="email"
             name="email"
             autoComplete="email"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             fullWidth
           />
@@ -103,7 +80,7 @@ class Signup extends Component {
             className={classes.textField}
             type="password"
             autoComplete="current-password"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             fullWidth
           />
@@ -115,12 +92,19 @@ class Signup extends Component {
             className={classes.textField}
             type="password"
             autoComplete="current-password"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             fullWidth
           />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Create
+          </Button>
         </form>
-      </div>
+      </Paper>
     );
   }
 }

@@ -1,18 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Typography,
-  Card,
-  CardContent,
-  Paper,
-  CardMedia,
-  CardActions,
-  IconButton,
-  CardHeader,
-  Collapse,
-  Grid
-} from "@material-ui/core";
+import { Typography, Card, Paper, IconButton, Grid } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
