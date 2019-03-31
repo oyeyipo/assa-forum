@@ -29,8 +29,6 @@ class Signup extends Component {
       role: "1",
       errors: {}
     };
-
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange = (name) => (event) => {
@@ -39,7 +37,7 @@ class Signup extends Component {
     });
   };
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const newUser = {
@@ -50,10 +48,7 @@ class Signup extends Component {
       password2: this.state.password2
     };
     console.log(newUser);
-  }
-  // handleChange(e) {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
+  };
 
   render() {
     const { classes } = this.props;

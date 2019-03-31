@@ -27,7 +27,6 @@ class Login extends Component {
       role: "1",
       errors: {}
     };
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange = (name) => (event) => {
@@ -36,7 +35,7 @@ class Login extends Component {
     });
   };
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const loginUser = {
@@ -45,7 +44,7 @@ class Login extends Component {
       password: this.state.password
     };
     console.log(loginUser);
-  }
+  };
 
   render() {
     const { classes } = this.props;
