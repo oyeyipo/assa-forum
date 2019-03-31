@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
@@ -26,7 +27,7 @@ class Signup extends Component {
       email: "",
       password: "",
       password2: "",
-      role: "1",
+      roles: "1",
       errors: {}
     };
   }
@@ -43,11 +44,15 @@ class Signup extends Component {
     const newUser = {
       username: this.state.username,
       email: this.state.email,
-      role: this.state.role,
+      roles: this.state.roles,
       password: this.state.password,
       password2: this.state.password2
     };
-    console.log(newUser);
+
+    axios
+      .post("api/users/", newUser)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
 
   render() {
