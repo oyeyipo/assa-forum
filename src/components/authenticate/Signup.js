@@ -29,6 +29,8 @@ class Signup extends Component {
       role: "1",
       errors: {}
     };
+
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange = (name) => (event) => {
@@ -37,6 +39,18 @@ class Signup extends Component {
     });
   };
 
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      username: this.state.username,
+      email: this.state.email,
+      role: this.state.role,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+    console.log(newUser);
+  }
   // handleChange(e) {
   //   this.setState({ [e.target.name]: e.target.value });
   // }
@@ -111,6 +125,7 @@ class Signup extends Component {
             variant="contained"
             color="primary"
             className={classes.button}
+            onClick={this.onSubmit}
           >
             Create
           </Button>
