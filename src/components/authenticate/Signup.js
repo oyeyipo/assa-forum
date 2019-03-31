@@ -19,20 +19,27 @@ const styles = (theme) => ({
 });
 
 class Signup extends Component {
-  state = {
-    username: "",
-    email: "",
-    password: "",
-    password2: "",
-    role: "1",
-    errors: {}
-  };
+  constructor() {
+    super();
+    this.state = {
+      username: "",
+      email: "",
+      password: "",
+      password2: "",
+      role: "1",
+      errors: {}
+    };
+  }
 
   handleChange = (name) => (event) => {
     this.setState({
       [name]: event.target.value
     });
   };
+
+  // handleChange(e) {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
 
   render() {
     const { classes } = this.props;
@@ -43,7 +50,7 @@ class Signup extends Component {
             Register
           </Typography>
 
-          <Typography variant="subtitle1" component="h3">
+          <Typography variant="subtitle1" component="h3" color="textSecondary">
             Create your account with the form below
           </Typography>
         </div>
@@ -52,10 +59,11 @@ class Signup extends Component {
             required
             id="username-input"
             label="Enter Username"
-            className={classes.textField}
             type="text"
             name="text"
             margin="dense"
+            value={this.state.username}
+            onChange={this.handleChange("username")}
             variant="outlined"
             fullWidth
           />
@@ -63,13 +71,14 @@ class Signup extends Component {
           <TextField
             required
             id="email-input"
-            label="Email"
-            className={classes.textField}
+            label="Email Address"
             type="email"
             name="email"
             autoComplete="email"
             margin="dense"
+            onChange={this.handleChange("email")}
             variant="outlined"
+            value={this.state.email}
             fullWidth
           />
 
@@ -77,11 +86,12 @@ class Signup extends Component {
             required
             id="password-input"
             label="Password"
-            className={classes.textField}
             type="password"
             autoComplete="current-password"
             margin="dense"
             variant="outlined"
+            value={this.state.password}
+            onChange={this.handleChange("password")}
             fullWidth
           />
 
@@ -89,10 +99,11 @@ class Signup extends Component {
             required
             id="repeat-password-input"
             label="Password (again)"
-            className={classes.textField}
             type="password"
             autoComplete="current-password"
             margin="dense"
+            value={this.state.password2}
+            onChange={this.handleChange("password2")}
             variant="outlined"
             fullWidth
           />
