@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
@@ -16,6 +17,9 @@ const styles = (theme) => ({
   },
   button: {
     margin: "1rem auto"
+  },
+  errors: {
+    color: "orangered"
   }
 });
 
@@ -52,11 +56,13 @@ class Signup extends Component {
     axios
       .post("api/users/", newUser)
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => this.setState({ errors: err.response.data }));
   };
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state;
+
     return (
       <Paper className={classes.container} elevation={0}>
         <div className={classes.title}>
@@ -71,6 +77,7 @@ class Signup extends Component {
         <form className={classes.form} noValidate autoComplete="off">
           <TextField
             required
+            error={errors.username}
             id="username-input"
             label="Enter Username"
             type="text"
@@ -81,9 +88,15 @@ class Signup extends Component {
             variant="outlined"
             fullWidth
           />
+          {errors.username && (
+            <div className={classes.errors}>
+              <small>{errors.username}</small>
+            </div>
+          )}
 
           <TextField
             required
+            error={errors.email}
             id="email-input"
             label="Email Address"
             type="email"
@@ -95,9 +108,15 @@ class Signup extends Component {
             value={this.state.email}
             fullWidth
           />
+          {errors.email && (
+            <div className={classes.errors}>
+              <small>{errors.email}</small>
+            </div>
+          )}
 
           <TextField
             required
+            error={errors.password}
             id="password-input"
             label="Password"
             type="password"
@@ -108,9 +127,15 @@ class Signup extends Component {
             onChange={this.handleChange("password")}
             fullWidth
           />
+          {errors.password && (
+            <div className={classes.errors}>
+              <small>{errors.password}</small>
+            </div>
+          )}
 
           <TextField
             required
+            error={errors.password2}
             id="repeat-password-input"
             label="Password (again)"
             type="password"
@@ -121,6 +146,12 @@ class Signup extends Component {
             variant="outlined"
             fullWidth
           />
+          {errors.password2 && (
+            <div className={classes.errors}>
+              <small>{errors.password2}</small>
+            </div>
+          )}
+
           <Button
             variant="contained"
             color="primary"
