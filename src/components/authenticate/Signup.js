@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
 import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
@@ -53,18 +55,23 @@ class Signup extends Component {
       password2: this.state.password2
     };
 
-    axios
-      .post("api/users/", newUser)
-      .then((res) => console.log(res.data))
-      .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser);
+
+    // axios
+    //   .post("api/users/", newUser)
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => this.setState({ errors: err.response.data }));
   };
 
   render() {
     const { classes } = this.props;
     const { errors } = this.state;
+    const { user } = this.props.auth;
 
     return (
       <Paper className={classes.container} elevation={0}>
+        {user ? user.username : null}
+        {user ? user.email : null}
         <div className={classes.title}>
           <Typography variant="h6" component="h2">
             Register
@@ -166,7 +173,16 @@ class Signup extends Component {
   }
 }
 Signup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Signup);
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withStyles(styles)(Signup));
