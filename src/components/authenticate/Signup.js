@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import axios from "axios";
+
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
@@ -38,6 +39,12 @@ class Signup extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   handleChange = (name) => (event) => {
     this.setState({
       [name]: event.target.value
@@ -55,23 +62,15 @@ class Signup extends Component {
       password2: this.state.password2
     };
 
-    this.props.registerUser(newUser);
-
-    // axios
-    //   .post("api/users/", newUser)
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
     const { classes } = this.props;
     const { errors } = this.state;
-    const { user } = this.props.auth;
 
     return (
       <Paper className={classes.container} elevation={0}>
-        {user ? user.username : null}
-        {user ? user.email : null}
         <div className={classes.title}>
           <Typography variant="h6" component="h2">
             Register
@@ -175,14 +174,16 @@ class Signup extends Component {
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withStyles(styles)(Signup));
+)(withRouter(withStyles(styles)(Signup)));

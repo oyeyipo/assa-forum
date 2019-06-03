@@ -5,7 +5,8 @@ from datetime import timedelta
 import dj_database_url
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,14 +29,14 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "threads.apps.ThreadsConfig",
     "comment.apps.CommentConfig",
-   
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
+
     # Third party lib
     "rest_framework",
     "multiselectfield",
@@ -123,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'), 
+    os.path.join(BASE_DIR, 'build/static'),
 ]
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn')
 
@@ -159,7 +160,6 @@ SIMPLE_JWT = {
     # 'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
 
 
 # Activate Django-Heroku.

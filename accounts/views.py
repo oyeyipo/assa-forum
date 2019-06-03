@@ -18,11 +18,9 @@ from .serializers import (CorperProfileSerializer, StudentProfileSerializer,
 
 
 class UserListCreate(ListCreateAPIView):
-    # queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     lookup_field = "username"
     permission_classes = [AllowAny]
-
 
     def get_queryset(self):
         return User.objects.all()
@@ -34,30 +32,6 @@ class UserDetailCreate(RetrieveAPIView):
     lookup_field = "username"
     permission_classes = [AllowAny]
 
-
-class UserProfileDetailAPIView(APIView):
-    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
-
-    def get_object(self, username):
-        try:
-            return User.objects.get(username=username)
-        except User.DoesNotExist:
-            raise Http404
-
-    def get(self, request, username, format=None):
-        owner = self.get_object(username)
-
-        if not request.user.is_authenticated:
-            return Response(
-                {"msg": "your are not logged in"}, status.HTTP_401_UNAUTHORIZED
-            )
-        if owner.roles == User.CORPER_VAR:
-            user = owner.corper_profile
-            serializer = CorperProfileSerializer(user)
-        if owner.roles == User.STUDENT_VAR:
-            user = owner.student_profile
-            serializer = StudentProfileSerializer(user)
-        return Response(serializer.data)
 
 class UserProfileDetail(RetrieveAPIView):
     lookup_field = "username"
@@ -81,3 +55,33 @@ class UserProfileDetail(RetrieveAPIView):
 
     def get_queryset(self):
         return User.objects.all()
+
+
+####################################################################
+###################################################################
+###################### NOT IN USE FOR NOW ########################
+################################################################
+##############################################################
+class UserProfileDetailAPIView(APIView):
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+
+    def get_object(self, username):
+        try:
+            return User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, username, format=None):
+        owner = self.get_object(username)
+
+        if not request.user.is_authenticated:
+            return Response(
+                {"msg": "your are not logged in"}, status.HTTP_401_UNAUTHORIZED
+            )
+        if owner.roles == User.CORPER_VAR:
+            user = owner.corper_profile
+            serializer = CorperProfileSerializer(user)
+        if owner.roles == User.STUDENT_VAR:
+            user = owner.student_profile
+            serializer = StudentProfileSerializer(user)
+        return Response(serializer.data)

@@ -5,25 +5,6 @@ from rest_framework.serializers import (
 from .models import User, CorperProfile, StudentProfile
 
 
-class UserListSerializer(ModelSerializer):
-    url = HyperlinkedIdentityField(
-        view_name="api:users:detail_delete_update",
-        read_only=True,
-        lookup_field="username",
-    )
-
-    class Meta:
-        model = User
-        fields = (
-            "url", 
-            "id",
-            "username", 
-            "roles", 
-            "first_name",
-        )
-
-
-
 class UserDetailSerializer(ModelSerializer):
     url = HyperlinkedIdentityField(
         view_name="api:users:profile",
@@ -83,3 +64,25 @@ class StudentProfileSerializer(ModelSerializer):
         model = StudentProfile
         fields = '__all__'
 
+
+
+########################################################
+########################################################
+########################################################
+
+class UserListSerializer(ModelSerializer):
+    url = HyperlinkedIdentityField(
+        view_name="api:users:detail_delete_update",
+        read_only=True,
+        lookup_field="username",
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            "url", 
+            "id",
+            "username", 
+            "roles", 
+            "first_name",
+        )
