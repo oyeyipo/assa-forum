@@ -28,7 +28,7 @@ class Main extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AuthContainer />
+        {/* <AuthContainer /> */}
         <main className={classes.frontpage}>
           <Frontpage />
         </main>
