@@ -7,7 +7,9 @@ import { AuthContainer } from "./authenticate";
 
 const styles = {
   root: {},
-  frontpage: {}
+  frontpage: {
+    flexBasis: "50%"
+  }
 };
 
 class Main extends Component {

@@ -157,61 +157,6 @@ class Frontpage extends Component {
               </Grid>
             </Card>
           </div>
-          <div className={classes.container}>
-            <Card square={true} elevation={0} className={classes.news}>
-              <Grid
-                container
-                justify="space-between"
-                alignItems="center"
-                className={classes.content_header}
-              >
-                <Grid item>
-                  <Grid container justify="center" alignItems="center">
-                    <Grid item>
-                      <Typography
-                        color="textSecondary"
-                        className={classes.meta_info}
-                      >
-                        c/General
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography>{bull}</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography
-                        color="textSecondary"
-                        className={classes.meta_info}
-                      >
-                        Sept. 4, 1992
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item>
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
-                </Grid>
-              </Grid>
-              <Grid>
-                <Typography className={classes.title}>
-                  Word of the DayWord of the DayWord of the DayWord of the
-                  DayWord of the Day
-                </Typography>
-              </Grid>
-            </Card>
-          </div>
-          <div className={classes.container}>
-            <Card square={true} elevation={0} className={classes.news}>
-              <Grid>
-                <Typography className={classes.title}>
-                  Word of the DayWord of the DayWord of the DayWord of the
-                  DayWord of the Day
-                </Typography>
-              </Grid>
-            </Card>
-          </div>
         </div>
       </Fragment>
     );
