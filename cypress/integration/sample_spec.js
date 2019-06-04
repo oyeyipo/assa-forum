@@ -1,6 +1,6 @@
 describe("CSS-Tricks home page", function() {
   beforeEach(function() {
-    cy.visit("https://css-tricks.com/");
+    cy.visit("/");
   });
 
   it('contains "CSS-Tricks" in the title', function() {
@@ -40,5 +40,15 @@ describe("CSS-Tricks home page", function() {
     it("requests the results", function() {
       cy.url().should("include", "?s=flexbox");
     });
+  });
+});
+
+describe("Search results page", function() {
+  beforeEach(function() {
+    cy.visit("/?s=flexbox");
+  });
+
+  it("displays search results", function() {
+    cy.get(".search-grid-list li").should("exist");
   });
 });
