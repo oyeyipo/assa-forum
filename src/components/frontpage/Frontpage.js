@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Card, Paper, IconButton, Grid } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import FavoriteIcon from "@material-ui/icons/Favorite";
+// import ShareIcon from "@material-ui/icons/Share";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const styles = (theme) => ({
@@ -99,11 +99,6 @@ class Frontpage extends Component {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item>
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
-                </Grid>
               </Grid>
               <Grid item className={classes.content}>
                 <Typography className={classes.title}>
@@ -142,11 +137,6 @@ class Frontpage extends Component {
                       </Typography>
                     </Grid>
                   </Grid>
-                </Grid>
-                <Grid item>
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
                 </Grid>
               </Grid>
               <Grid>

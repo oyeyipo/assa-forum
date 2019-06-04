@@ -5,12 +5,12 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  IconButton,
+  // IconButton,
   Link,
   Grid
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+// import MenuIcon from "@material-ui/icons/Menu";
+// import SearchIcon from "@material-ui/icons/Search";
 import SideMenuDrawer from "./Drawer";
 import { Link as RouterLink } from "react-router-dom";
 

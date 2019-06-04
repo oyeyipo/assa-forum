@@ -1,3 +1,5 @@
+import { AssertionError } from "assert";
+
 describe("ASSA forum landing page -- NO AUTH", function() {
   beforeEach(function() {
     cy.visit("/");
@@ -23,4 +25,13 @@ describe("ASSA forum landing page -- NO AUTH", function() {
   it("section contains 'ASBN Frontpage News'", function() {
     cy.get(".frontpage-news").should("contain", "ASBN Frontpage News");
   });
+
+  //
+
+  //
+  describe("Empty frontpage news", () => {});
+
+  it('finish the test', () => {
+    expect(true).to.equal(false)
+  })
 });

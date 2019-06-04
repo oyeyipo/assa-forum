@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Header, Footer } from "../components/layouts";
+import {
+  Header
+  // Footer
+} from "../components/layouts";
 
 class CustomLayout extends Component {
   render() {
