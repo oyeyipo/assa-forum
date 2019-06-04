@@ -49,8 +49,8 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="sticky">
           <Toolbar>
-            <Grid container justify="space-between" alignItems="center">
-              <Grid item>
+            <Grid container justify="center" alignItems="center">
+              {/* <Grid item>
                 <IconButton
                   className={classes.menuButton}
                   color="inherit"
@@ -59,19 +59,19 @@ class Header extends Component {
                 >
                   <MenuIcon />
                 </IconButton>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Typography
                   variant="h6"
                   color="inherit"
-                  className={classes.grow}
+                  className={[classes.grow, "assa-logo-text"]}
                 >
                   <Link component={HomeLink} color="inherit" underline="none">
                     ASSA <small>Forum</small>
                   </Link>
                 </Typography>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <IconButton
                   className={classes.searchBtn}
                   color="inherit"
@@ -79,7 +79,7 @@ class Header extends Component {
                 >
                   <SearchIcon />
                 </IconButton>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Toolbar>
         </AppBar>

@@ -63,7 +63,7 @@ class Frontpage extends Component {
             <Typography
               color="textSecondary"
               variant="h4"
-              className={classes.heading}
+              className={["frontpage-news", classes.heading]}
             >
               ASBN Frontpage News
             </Typography>
