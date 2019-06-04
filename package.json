@@ -36,6 +36,7 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "copyfiles": "^2.1.0",
+    "cypress": "^3.3.1",
     "renamer": "^1.1.1"
   },
   "proxy": "http://localhost:8000/",
