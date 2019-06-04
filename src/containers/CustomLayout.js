@@ -7,7 +7,7 @@ class CustomLayout extends Component {
       <div>
         <Header />
         <div>{this.props.children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
