@@ -26,12 +26,20 @@ describe("ASSA forum landing page -- NO AUTH", function() {
     cy.get(".frontpage-news").should("contain", "ASBN Frontpage News");
   });
 
-  //
+  // it was a news about the school events that occurred reecently
+  // it shows the title and the date and also the kinda of category called general
+  // there is more and more beneath that as well with same format.
+  // Not being patience, Eke decided to click on one of the list articles which took
+  // to a another page called detail page as show in the url by the title of
+  // article in slug form
+  // HE reads the article which was interesting
+  // satisfied He went back to sleep
+
+  // Smoked test and angry goat
+  it("finish the test", () => {
+    expect(true).to.equal(false, "finish the tests!!");
+  });
 
   //
   describe("Empty frontpage news", () => {});
-
-  it('finish the test', () => {
-    expect(true).to.equal(false)
-  })
 });
