@@ -16,6 +16,7 @@ const styles = {
   }
 };
 
+
 class SideMenuDrawer extends Component {
   render() {
     const { classes, open, toggle } = this.props;

@@ -1,17 +1,37 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography, Card, Paper, IconButton, Grid } from "@material-ui/core";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { Typography, Card, Paper, Grid, CardHeader } from "@material-ui/core"; //IconButton,
 // import FavoriteIcon from "@material-ui/icons/Favorite";
 // import ShareIcon from "@material-ui/icons/Share";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import styled from "styled-components";
+
+// const MetaWrapper = styled.div`
+//   && {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+// `;
+
+const useStyles = makeStyles({
+  title: {
+    fontSize: 4
+  },
+  subheader: {
+    fontSize: 4
+  }
+});
 
 const styles = (theme) => ({
   root: {
     width: "100%",
     backgroundColor: theme.grey.light_1,
     marginTop: 10
+  },
+  header: {
+    fontSize: 2
   },
   heading: {
     padding: ".6rem",
@@ -20,7 +40,8 @@ const styles = (theme) => ({
   },
   news: {
     width: "100%",
-    fontSize: ".8rem"
+    // fontSize: ".8rem",
+    padding: "0.5rem"
   },
   news__content: {
     width: "100%",
@@ -35,7 +56,7 @@ const styles = (theme) => ({
     marginTop: 3
   },
   content_header: {
-    marginButtom: 0
+    fontSize: "0.6rem"
   },
   content: {
     margin: 0
@@ -48,13 +69,18 @@ const styles = (theme) => ({
   meta_info: {
     fontSize: "1rem",
     margin: "0 0.5rem"
+  },
+  meta_info__wrapper: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 });
 
 class Frontpage extends Component {
   render() {
     const { classes } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
+    // const bull = <span className={classes.bullet}>•</span>;
+    const useClasses = useStyles();
 
     return (
       <Fragment>
@@ -70,41 +96,18 @@ class Frontpage extends Component {
           </Paper>
           <div className={classes.container}>
             <Card square={true} elevation={0} className={classes.news}>
-              <Grid
-                container
-                justify="space-between"
-                alignItems="center"
-                className={classes.content_header}
-              >
-                <Grid item>
-                  <Grid container justify="center" alignItems="center">
-                    <Grid item>
-                      <Typography
-                        color="textSecondary"
-                        className={classes.meta_info}
-                      >
-                        c/General
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography>{bull}</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography
-                        color="textSecondary"
-                        className={classes.meta_info}
-                      >
-                        Sept. 4, 1992
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item className={classes.content}>
-                <Typography className={classes.title}>
-                  Word of the DayWord of the DayWord of the DayWord
-                </Typography>
-              </Grid>
+              <CardHeader
+                title="c/General"
+                subheader="Sept. 4, 1992"
+                classes={{
+                  title: useClasses.title,
+                  subheader: useClasses.subheader
+                }}
+              />
+              <Typography className={classes.title}>
+                Word of the DayWord of the DayWord of the DayWord of the DayWord
+                of the Day
+              </Typography>
             </Card>
           </div>
           <div className={classes.container}>
@@ -125,9 +128,7 @@ class Frontpage extends Component {
                         c/General
                       </Typography>
                     </Grid>
-                    <Grid item>
-                      <Typography>{bull}</Typography>
-                    </Grid>
+
                     <Grid item>
                       <Typography
                         color="textSecondary"
@@ -148,6 +149,11 @@ class Frontpage extends Component {
             </Card>
           </div>
         </div>
+
+        {/* <MetaWrapper>
+          <h6>hwfg</h6>
+          <h6>hwfg</h6>
+        </MetaWrapper> */}
       </Fragment>
     );
   }
