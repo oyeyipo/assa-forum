@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Card, Paper, CardContent } from "@material-ui/core"; //IconButton,
 import StyledCardHeader from "./StyledCardHeader";
+import { AuthContainer } from "../authenticate";
 
 // const MetaWrapper = styled.div`
 //   && {
@@ -52,10 +53,10 @@ class Frontpage extends Component {
   render() {
     const { classes } = this.props;
     // const bull = <span className={classes.bullet}>•</span>;
-    // const classes = useStyles();
 
     return (
       <Fragment>
+        <AuthContainer />
         <div className={classes.root}>
           <Paper square={true} elevation={0}>
             <Typography

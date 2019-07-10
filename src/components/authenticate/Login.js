@@ -56,7 +56,7 @@ class Login extends Component {
           </Typography>
 
           <Typography variant="subtitle1" component="h3" color="textSecondary">
-            Login into your ASSA forum account.
+            Log in into account.
           </Typography>
         </div>
         <form className={classes.form} noValidate autoComplete="off">

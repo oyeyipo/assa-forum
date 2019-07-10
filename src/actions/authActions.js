@@ -1,6 +1,6 @@
 import { GET_ERRORS } from "./types";
 import axios from "axios";
- 
+import setAuthToken from "../utils/setAuthToken";
 
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
@@ -15,7 +15,7 @@ export const registerUser = (userData, history) => (dispatch) => {
     );
 };
 
-// Login -Get User token
+// Login - Get User token
 export const loginUser = (userData) => (dispatch) => {
   axios
     .post("/api/token/", userData)
@@ -25,7 +25,7 @@ export const loginUser = (userData) => (dispatch) => {
       // set token to ls
       localStorage.setItem("jwtToken", access);
       // set token to Auth header
-      // setAuthToken(access);
+      setAuthToken(access);
     })
     .catch((err) =>
       dispatch({

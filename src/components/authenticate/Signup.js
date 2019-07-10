@@ -171,6 +171,7 @@ class Signup extends Component {
     );
   }
 }
+
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   registerUser: PropTypes.func.isRequired,
