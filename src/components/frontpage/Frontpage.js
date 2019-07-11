@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Card, Paper, CardContent } from "@material-ui/core"; //IconButton,
 import StyledCardHeader from "./StyledCardHeader";
@@ -13,56 +15,57 @@ import { AuthContainer } from "../authenticate";
 // `;
 
 const styles = (theme) => ({
-  root: {
-    width: "100%",
-    backgroundColor: theme.grey.light_1,
-    marginTop: 10
-  },
-  heading: {
-    padding: ".6rem",
-    fontSize: "1rem",
-    textAlign: "center"
-  },
-  news: {
-    width: "100%",
-    // fontSize: ".8rem",
-    padding: "0.5rem"
-  },
+    root: {
+        width: "100%",
+        backgroundColor: theme.grey.light_1,
+        marginTop: 10
+    },
+    heading: {
+        padding: ".6rem",
+        fontSize: "1rem",
+        textAlign: "center"
+    },
+    news: {
+        width: "100%",
+        // fontSize: ".8rem",
+        padding: "0.5rem"
+    },
 
-  title: {
-    fontSize: 17,
-    textAlign: "center",
-    color: theme.palette.primary.main,
-    marginTop: 0
-  },
-  container: {
-    marginTop: 3
-  },
-  content_header: {
-    fontSize: "0.6rem"
-  },
+    title: {
+        fontSize: 17,
+        textAlign: "center",
+        color: theme.palette.primary.main,
+        marginTop: 0
+    },
+    container: {
+        marginTop: 3
+    },
+    content_header: {
+        fontSize: "0.6rem"
+    },
 
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  }
+    bullet: {
+        display: "inline-block",
+        margin: "0 2px",
+        transform: "scale(0.8)"
+    }
 });
 
 class Frontpage extends Component {
-  render() {
-    const { classes } = this.props;
-    // const bull = <span className={classes.bullet}>•</span>;
+    render() {
+        const {classes} = this.props;
+        // const bull = <span className={classes.bullet}>•</span>;
+        const {isAuthenticated} = this.props.auth;
 
-    return (
-      <Fragment>
-        <AuthContainer />
+        return (
+            <Fragment>
+            {!isAuthenticated && <AuthContainer />}
         <div className={classes.root}>
           <Paper square={true} elevation={0}>
             <Typography
-              color="textSecondary"
-              variant="h4"
-              className={["frontpage-news", classes.heading]}
+            color="textSecondary"
+            variant="h4"
+            className={["frontpage-news", classes.heading]}
             >
               ASBN Frontpage News
             </Typography>
@@ -72,11 +75,11 @@ class Frontpage extends Component {
               <StyledCardHeader title="c/General" subheader="Sept. 4, 1992" />
               <CardContent>
                 <Typography
-                  className={classes.title}
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
+            className={classes.title}
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            >
                   Word of the DayWord of the DayWord of the DayWord of the
                   DayWord of the Day
                 </Typography>
@@ -88,11 +91,11 @@ class Frontpage extends Component {
               <StyledCardHeader title="c/General" subheader="Sept. 4, 1992" />
               <CardContent>
                 <Typography
-                  className={classes.title}
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
+            className={classes.title}
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            >
                   Word of the DayWord of the DayWord of the DayWord of the
                   DayWord of the Day
                 </Typography>
@@ -101,17 +104,22 @@ class Frontpage extends Component {
           </div>
         </div>
 
-        {/* <MetaWrapper>
+        { /* <MetaWrapper>
           <h6>hwfg</h6>
           <h6>hwfg</h6>
-        </MetaWrapper> */}
+        </MetaWrapper> */ }
       </Fragment>
-    );
-  }
+        );
+    }
 }
 
 Frontpage.propTypes = {
-  classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Frontpage);
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, {})(withStyles(styles)(Frontpage));

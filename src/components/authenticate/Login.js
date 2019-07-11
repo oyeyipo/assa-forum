@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import { withRouter } from "react-router-dom";
+
+// STYLING
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
@@ -15,6 +20,9 @@ const styles = (theme) => ({
   },
   button: {
     margin: "1rem auto"
+  },
+  errors: {
+    color: "orangered"
   }
 });
 
@@ -29,6 +37,16 @@ class Login extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("dashboard");
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   handleChange = (name) => (event) => {
     this.setState({
       [name]: event.target.value
@@ -38,16 +56,18 @@ class Login extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const loginUser = {
+    const userData = {
       username: this.state.username,
       role: this.state.role,
       password: this.state.password
     };
-    console.log(loginUser);
+
+    this.props.loginUser(userData);
   };
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state;
     return (
       <Paper className={classes.container} elevation={0}>
         <div className={classes.title}>
@@ -58,10 +78,17 @@ class Login extends Component {
           <Typography variant="subtitle1" component="h3" color="textSecondary">
             Log in into account.
           </Typography>
+
+          {errors.non_field_errors && 
+            <Typography variant="subtitle1" component="h3" color="textSecondary" className={classes.errors}>
+            {errors.non_field_errors}
+          </Typography>
+          }
         </div>
         <form className={classes.form} noValidate autoComplete="off">
           <TextField
             required
+            error={errors.username}
             id="username-input"
             label="Enter Username or Email"
             type="text"
@@ -72,9 +99,15 @@ class Login extends Component {
             variant="outlined"
             fullWidth
           />
+          {errors.username && (
+            <div className={classes.errors}>
+              <small>{errors.username}</small>
+            </div>
+          )}
 
           <TextField
             required
+            error={errors.password}
             id="password-input"
             label="Password"
             type="password"
@@ -85,6 +118,11 @@ class Login extends Component {
             onChange={this.handleChange("password")}
             fullWidth
           />
+          {errors.password && (
+            <div className={classes.errors}>
+              <small>{errors.password}</small>
+            </div>
+          )}
 
           <Button
             variant="contained"
@@ -101,6 +139,17 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
-export default withStyles(styles)(Login);
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(withRouter(withStyles(styles)(Login)));

@@ -5,12 +5,12 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  // IconButton,
+  IconButton,
   Link,
   Grid
 } from "@material-ui/core";
-// import MenuIcon from "@material-ui/icons/Menu";
-// import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
 import SideMenuDrawer from "./Drawer";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -49,8 +49,8 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="sticky">
           <Toolbar>
-            <Grid container justify="center" alignItems="center">
-              {/* <Grid item>
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
                 <IconButton
                   className={classes.menuButton}
                   color="inherit"
@@ -59,7 +59,7 @@ class Header extends Component {
                 >
                   <MenuIcon />
                 </IconButton>
-              </Grid> */}
+              </Grid>
               <Grid item>
                 <Typography
                   variant="h6"
@@ -71,7 +71,7 @@ class Header extends Component {
                   </Link>
                 </Typography>
               </Grid>
-              {/* <Grid item>
+              <Grid item>
                 <IconButton
                   className={classes.searchBtn}
                   color="inherit"
@@ -79,7 +79,7 @@ class Header extends Component {
                 >
                   <SearchIcon />
                 </IconButton>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Toolbar>
         </AppBar>
