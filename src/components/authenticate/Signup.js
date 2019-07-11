@@ -9,68 +9,77 @@ import { withStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Typography, Button } from "@material-ui/core";
 
 const styles = (theme) => ({
-  container: {
-    margin: "1rem auto"
-  },
-  title: {
-    textAlign: "center"
-  },
-  form: {
-    margin: "0 1rem"
-  },
-  button: {
-    margin: "1rem auto"
-  },
-  errors: {
-    color: "orangered"
-  }
+    container: {
+        margin: "1rem auto"
+    },
+    title: {
+        textAlign: "center"
+    },
+    form: {
+        margin: "0 1rem"
+    },
+    button: {
+        margin: "1rem auto"
+    },
+    errors: {
+        color: "orangered"
+    }
 });
 
 class Signup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      password2: "",
-      roles: "1",
-      errors: {}
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+    constructor() {
+        super();
+        this.state = {
+            username: "",
+            email: "",
+            password: "",
+            password2: "",
+            roles: "1",
+            errors: {}
+        };
     }
-  }
 
-  handleChange = (name) => (event) => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
 
-  onSubmit = (e) => {
-    e.preventDefault();
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
 
-    const newUser = {
-      username: this.state.username,
-      email: this.state.email,
-      roles: this.state.roles,
-      password: this.state.password,
-      password2: this.state.password2
+    handleChange = (name) => (event) => {
+        this.setState({
+            [name]: event.target.value
+        });
     };
 
-    this.props.registerUser(newUser, this.props.history);
-  };
 
-  render() {
-    const { classes } = this.props;
-    const { errors } = this.state;
+    onSubmit = (e) => {
+        e.preventDefault();
 
-    return (
-      <Paper className={classes.container} elevation={0}>
+        const newUser = {
+            username: this.state.username,
+            email: this.state.email,
+            roles: this.state.roles,
+            password: this.state.password,
+            password2: this.state.password2
+        };
+
+        this.props.registerUser(newUser, this.props.history);
+    };
+
+    render() {
+        const {classes} = this.props;
+        const {errors} = this.state;
+
+        return (
+            <Paper className={classes.container} elevation={0}>
         <div className={classes.title}>
           <Typography variant="h6" component="h2">
             Register
@@ -93,12 +102,12 @@ class Signup extends Component {
             onChange={this.handleChange("username")}
             variant="outlined"
             fullWidth
-          />
+            />
           {errors.username && (
             <div className={classes.errors}>
               <small>{errors.username}</small>
             </div>
-          )}
+            )}
 
           <TextField
             required
@@ -113,12 +122,12 @@ class Signup extends Component {
             variant="outlined"
             value={this.state.email}
             fullWidth
-          />
+            />
           {errors.email && (
             <div className={classes.errors}>
               <small>{errors.email}</small>
             </div>
-          )}
+            )}
 
           <TextField
             required
@@ -132,12 +141,12 @@ class Signup extends Component {
             value={this.state.password}
             onChange={this.handleChange("password")}
             fullWidth
-          />
+            />
           {errors.password && (
             <div className={classes.errors}>
               <small>{errors.password}</small>
             </div>
-          )}
+            )}
 
           <TextField
             required
@@ -151,40 +160,42 @@ class Signup extends Component {
             onChange={this.handleChange("password2")}
             variant="outlined"
             fullWidth
-          />
+            />
           {errors.password2 && (
             <div className={classes.errors}>
               <small>{errors.password2}</small>
             </div>
-          )}
+            )}
 
           <Button
             variant="contained"
             color="primary"
             className={classes.button}
             onClick={this.onSubmit}
-          >
+            >
             Create
           </Button>
         </form>
       </Paper>
-    );
-  }
+        );
+    }
 }
 
 Signup.propTypes = {
-  classes: PropTypes.object.isRequired,
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors
+    auth: state.auth,
+    errors: state.errors
 });
 
 export default connect(
-  mapStateToProps,
-  { registerUser }
+    mapStateToProps,
+    {
+        registerUser
+    }
 )(withRouter(withStyles(styles)(Signup)));

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from .views import (
+    ThreadListAPIView,
     ThreadListCreateAPIView,
     ThreadDetailUpdateDeleteAPIView,
     HelloView,
@@ -11,6 +12,7 @@ from .views import (
 app_name = "threads"
 urlpatterns = [
     path("", ThreadListCreateAPIView.as_view(), name="list_create"),
+    path("list/", ThreadListAPIView.as_view(), name="list"),
     path(
         "<slug:uuid>/",
         ThreadDetailUpdateDeleteAPIView.as_view(),

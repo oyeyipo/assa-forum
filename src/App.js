@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser } from "./actions/authActions";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import BaseRouter from "./routes";
 import { Provider } from "react-redux";
@@ -16,18 +16,30 @@ import { Theme } from "./components/layouts";
 
 // Check for token
 if (localStorage.jwtToken) {
-  // Set token header auth
-  setAuthToken(localStorage.jwtToken);
-  // Decode token and get user info and expiration
-  const decoded = jwt_decode(localStorage.jwtToken);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
+    // Set token header auth
+    setAuthToken(localStorage.jwtToken);
+    // Decode token and get user info and expiration
+    const decoded = jwt_decode(localStorage.jwtToken);
+    // Set user and isAuthenticated
+    store.dispatch(setCurrentUser(decoded));
+
+    // Check for expired token
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+        // Logout user
+        store.dispatch(logoutUser());
+        // TODO: Clear current Profile
+
+
+        // Redirect to login
+        window.location.href = '/login';
+    }
 }
 
 class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
+    render() {
+        return (
+            <Provider store={store}>
         <Fragment>
           <Router>
             <CssBaseline />
@@ -39,8 +51,8 @@ class App extends Component {
           </Router>
         </Fragment>
       </Provider>
-    );
-  }
+        );
+    }
 }
 
 export default App;

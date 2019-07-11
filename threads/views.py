@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from rest_framework.generics import (
+    ListAPIView,
     ListCreateAPIView,
     RetrieveAPIView,
     RetrieveUpdateDestroyAPIView,
@@ -29,6 +30,13 @@ class ThreadListCreateAPIView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+class ThreadListAPIView(ListAPIView):
+    queryset = Thread.objects.all()
+    serializer_class = ThreadListSerializer
+    lookup_field = "uuid"
+    permission_classes = [AllowAny]
+
 
 
 class ThreadDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
