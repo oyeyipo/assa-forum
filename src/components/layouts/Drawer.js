@@ -14,8 +14,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import HomeIcon from "@material-ui/icons/Home";
 import MailIcon from "@material-ui/icons/Mail";
 import InfoIcon from "@material-ui/icons/Info";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const styles = {
     list: {
@@ -39,6 +41,7 @@ class SideMenuDrawer extends Component {
         const LoginLink = (props) => <RouterLink to="/login" {...props} />;
         const SignupLink = (props) => <RouterLink to="/signup" {...props} />;
         const LogoutLink = (props) => <RouterLink to="#" {...props} />;
+        const HomeLink = (props) => <RouterLink to="/" {...props} />;
 
         const authLinks = (
         <List>
@@ -83,14 +86,22 @@ class SideMenuDrawer extends Component {
         </List>
         <Divider />*/ }
         <List>
-          {["All mail", "Trash"].map((text, index) => (
-            <ListItem button key={text}>
+          <Link component={HomeLink} color="inherit" underline="none">
+            <ListItem button>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <HomeIcon /> 
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={"Home"} />
             </ListItem>
-        ))}
+          </Link>
+          <Link component={HomeLink} color="inherit" underline="none">
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon /> 
+              </ListItemIcon>
+              <ListItemText primary={"Dashboard"} />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         {isAuthenticated ?
