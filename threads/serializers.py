@@ -1,4 +1,4 @@
-from rest_framework.serializers import (
+=from rest_framework.serializers import (
     ModelSerializer,
     HyperlinkedIdentityField,
     HyperlinkedRelatedField,
@@ -29,7 +29,6 @@ class ThreadListSerializer(ModelSerializer):
     def get_comment_count(self, obj):
         qs = obj.comments.all().count()
         return qs
-
 
 
 class ThreadDetailSerializer(ModelSerializer):
