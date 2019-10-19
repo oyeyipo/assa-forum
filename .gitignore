@@ -167,6 +167,7 @@ venv.bak/
 /site
 
 *-lock.json
+lock.json
 
 # mypy
 .mypy_cache/
